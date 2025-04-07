@@ -1,23 +1,86 @@
 palavra_secreta = "girafa"
-letras_acertadas = ["_", "_", "_", "_", "_", "_"]
+letras_acertadas = "_" * len(palavra_secreta)
 tentativas = 6
 
+# Desenho inicial da forca
+desenho_forca = [
+    """
+     -----
+    |     |
+          |
+          |
+          |
+          |
+    =========""",
+    """
+     -----
+    |     |
+    O     |
+          |
+          |
+          |
+    =========""",
+    """
+     -----
+    |     |
+    O     |
+    |     |
+          |
+          |
+    =========""",
+    """
+     -----
+    |     |
+    O     |
+   /|     |
+          |
+          |
+    =========""",
+    """
+     -----
+    |     |
+    O     |
+   /|\\    |
+          |
+          |
+    =========""",
+    """
+     -----
+    |     |
+    O     |
+   /|\\    |
+   /      |
+          |
+    =========""",
+    """
+     -----
+    |     |
+    O     |
+   /|\\    |
+   / \\    |
+          |
+    =========""",
+]
+
 while tentativas > 0 and "_" in letras_acertadas:
+    print(desenho_forca[6 - tentativas])
+    print("Palavra: ", letras_acertadas)
     palpite = input("Digite uma letra: ").lower()
 
-    if palpite in palavra_secreta:
-        index = 0
-        for letra in palavra_secreta:
-            if palpite == letra:
-                letras_acertadas[index] = letra
-            index += 1
+    if palpite in palavra_secreta and palpite not in letras_acertadas:
+        # Substitui os traços pelas letras corretas
+        letras_acertadas = "".join(
+            letra if letra == palpite else letras_acertadas[i]
+            for i, letra in enumerate(palavra_secreta)
+        )
+    elif palpite in letras_acertadas:
+        print("Você já acertou essa letra!")
     else:
         tentativas -= 1
         print(f"Você tem {tentativas} tentativas restantes.")
-    
-    print(" ".join(letras_acertadas))
 
 if "_" not in letras_acertadas:
     print("Parabéns, você ganhou!")
 else:
+    print(desenho_forca[6])  # Exibe a forca completa ao perder
     print("Que pena, você perdeu. A palavra era:", palavra_secreta)
