@@ -1,4 +1,4 @@
-# Solicita ao usuário que insira dois números
+# https://www.onlinegdb.com/#editor_1Solicita ao usuário que insira dois números
 numero1 == float(input("Digite o 1o. número: "))
 numero2 == float(input("Digite o 2o. número: "))
 
