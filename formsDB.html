@@ -2,13 +2,88 @@
 <html>
 <head>
   <title>Gestão de Clientes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2, h3 {
+      color: #333;
+    }
+
+    .form-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+    }
+
+    button {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      width: 300px;
+    }
+
+    li {
+      background-color: #fff;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    li button {
+      margin-left: 5px;
+      background-color: #2196F3;
+    }
+
+    li button:hover {
+      background-color: #0b7dda;
+    }
+  </style>
 </head>
 <body>
   <h2>Cadastro de Clientes</h2>
-  <input id="nome" placeholder="Nome" />
-  <input id="endereco" placeholder="Endereço" />
-  <input id="telefone" placeholder="Telefone" />
-  <button onclick="adicionarCliente()">Adicionar</button>
+  <div class="form-container">
+    <input id="nome" placeholder="Nome" />
+    <input id="endereco" placeholder="Endereço" />
+    <input id="telefone" placeholder="Telefone" />
+    <button onclick="adicionarCliente()">Adicionar</button>
+  </div>
 
   <h3>Lista de Clientes</h3>
   <ul id="listaClientes"></ul>
