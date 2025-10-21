@@ -42,13 +42,34 @@ def limpar_formulario():
     entry_email.delete(0, tk.END)
     entry_telefone.delete(0, tk.END)
 
+# Função para visualizar os clientes cadastrados
+def visualizar_clientes():
+    conexao = sqlite3.connect('clientes.db')
+    cursor = conexao.cursor()
+    cursor.execute('SELECT * FROM clientes')
+    clientes = cursor.fetchall()
+    conexao.close()
+
+    janela_visualizar = tk.Toplevel()
+    janela_visualizar.title("Clientes Cadastrados")
+    janela_visualizar.geometry("400x300")
+
+    texto = tk.Text(janela_visualizar, wrap=tk.WORD)
+    texto.pack(expand=True, fill=tk.BOTH)
+
+    if clientes:
+        for cliente in clientes:
+            texto.insert(tk.END, f"ID: {cliente[0]}\nNome: {cliente[1]}\nE-mail: {cliente[2]}\nTelefone: {cliente[3]}\n\n")
+    else:
+        texto.insert(tk.END, "Nenhum cliente cadastrado.")
+
 # Inicializa o banco de dados
 inicializar_banco()
 
 # Criação da interface gráfica
 janela = tk.Tk()
 janela.title("Cadastro de Clientes")
-janela.geometry("300x250")
+janela.geometry("300x300")
 
 # Labels e campos de entrada
 tk.Label(janela, text="Nome:").pack(pady=5)
@@ -65,7 +86,8 @@ entry_telefone.pack()
 
 # Botões
 tk.Button(janela, text="Salvar", command=salvar_cliente, bg="green", fg="white").pack(pady=10)
-tk.Button(janela, text="Limpar", command=limpar_formulario, bg="gray", fg="white").pack()
+tk.Button(janela, text="Limpar", command=limpar_formulario, bg="gray", fg="white").pack(pady=5)
+tk.Button(janela, text="Visualizar Clientes", command=visualizar_clientes, bg="blue", fg="white").pack(pady=5)
 
 # Executa a janela
 janela.mainloop()
